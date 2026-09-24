@@ -8,8 +8,8 @@
 <meta name="apple-mobile-web-app-title" content="课表">
 <meta name="theme-color" content="#3b74e8">
 <title>课表</title>
-<link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
+<!-- 不引用 manifest.json：iOS 16.4+ 会用 manifest 的 start_url 作为添加主屏的启动地址，丢失 URL hash 里的课表数据 -->
 <style>
 /* iOS 兼容：不用 inset / flex gap；safe-area 用双声明回退 */
 *{margin:0;padding:0;box-sizing:border-box}
@@ -88,6 +88,7 @@ button{font-family:inherit}
         还没有课表数据。<br><br>
         请回到 <b>Safari 浏览器</b> 打开教务课表页，点课表助手面板的「⇪」同步，落地后重新「添加到主屏幕」覆盖本图标即可。<br><br>
         （iOS 主屏应用与 Safari 存储相互独立，数据只能从落地页带入）
+        <div id="hero-diag" style="margin-top:12px;font-size:11px;color:#bbb"></div>
     </div>
 </div>
 
@@ -290,6 +291,7 @@ function render(weekNo) {
         hero.style.display = 'block';
         $('#hero-standalone').style.display = isStandalone() ? 'block' : 'none';
         $('#hero-browser').style.display = isStandalone() ? 'none' : 'block';
+        if (isStandalone()) $('#hero-diag').textContent = '诊断：启动链接长度 ' + location.href.length;
         document.title = '课表';
         return;
     }

@@ -1,4 +1,4 @@
-var VERSION = 'v1';
+var VERSION = 'v2';
 var CACHE_NAME = 'cqie-cc-viewer-' + VERSION;
 var ASSETS = ['./', './index.html', './manifest.json', './icon.svg'];
 
