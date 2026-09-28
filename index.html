@@ -346,7 +346,9 @@ function render(weekNo) {
     var gridHtml = '<div class="timecol">';
     for (var p = 1; p <= maxPeriod; p++) {
         var tm = periodTimes[p - 1] || '';
-        gridHtml += '<div class="tlabel"><b>' + p + '</b><i>' + escapeHtml(tm.split('~')[0]) + '</i></div>';
+        var tt = tm.split('~');
+        var tLab = tt[0] ? tt[0] + (tt[1] ? '-' + tt[1] : '') : '';
+        gridHtml += '<div class="tlabel"><b>' + p + '</b><i>' + escapeHtml(tLab) + '</i></div>';
     }
     gridHtml += '</div><div class="days">';
 
